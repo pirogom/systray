@@ -2,7 +2,7 @@
 
 clone from [tadvi/systray](https://github.com/tadvi/systray)
 
-modified winodw mouse click event handling.
+modified ms window mouse click event handling.
 
 grep PIROGOM
 
