@@ -448,8 +448,9 @@ func (p *Systray) SetIcon(hicon HICON) error {
 func (p *Systray) WinProc(hwnd HWND, msg uint32, wparam, lparam uintptr) uintptr {
 	switch msg {
 	case NotifyIconMessageId:
-
-		if lparam == WM_LBUTTONDBLCLK { // 더블클릭시 lclick 호출
+		// change mouse event handling
+		// PIROGOM
+		if lparam == WM_LBUTTONDBLCLK { // left button double click to lclick()
 			p.lclick()
 		} else if lparam == WM_RBUTTONDBLCLK { //
 			p.rclick()
