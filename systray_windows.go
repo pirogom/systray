@@ -382,7 +382,7 @@ func (p *Systray) SetTooltip(tooltip string) error {
 	return nil
 }
 
-func (p *Systray) ShowMessage(title, msg string, bigIcon bool) error {
+func (p *Systray) ShowMessage(title, msg string, bigIcon bool, nosound bool) error {
 	nid := NOTIFYICONDATA{
 		UID:  p.id,
 		HWnd: HWND(p.hwnd),
@@ -394,6 +394,11 @@ func (p *Systray) ShowMessage(title, msg string, bigIcon bool) error {
 	nid.CbSize = uint32(unsafe.Sizeof(nid))
 
 	nid.UFlags = NIF_INFO
+	// disable sound
+	if nosound {
+		nid.DwInfoFlags = NIIF_NOSOUND
+	}
+
 	copy(nid.SzInfoTitle[:], syscall.StringToUTF16(title))
 	copy(nid.SzInfo[:], syscall.StringToUTF16(msg))
 
